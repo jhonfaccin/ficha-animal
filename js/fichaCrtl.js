@@ -2,24 +2,28 @@ angular.module("ficha").controller('fichaCrtl',['$scope','fichaService','animalS
 function($scope,fichaService,animalService) {
 
     $scope.title = "Lista de Fichas";
-    //$scope.animais = animalService.getAll();
-    $scope.isVisible = false;
+    $scope.fichas = fichaService.getAll();
 
     $scope.excluir = function (ficha){
-        fichaService.remove(ficha);
-        $scope.fichas = fichaService.getAll()
+        fichaService.remove(ficha.identificador);
+        //$scope.fichas = fichaService.getAll()
+        console.log(ficha);
     }
 
     $scope.showCadastro = function(visibility){
         $scope.isVisible =  visibility;
-    }
+        $scope.animais = animalService.getAll();
 
-    var init = function(){
-        var ficha = [
-            {id: '111',dataDeCadastro: new Date(),status: 'ativo'}
-        ];
-        fichaService.add(ficha);
-        $scope.fichas = fichaService.getAll();
         console.log($scope.fichas);
     }
+
+    $scope.cadastrarFicha = function (ficha){
+        if (ficha.status === true){
+            ficha.status = 'Ativo';
+        }else{
+            ficha.status = 'Inativo'
+        }
+        fichaService.add(ficha);
+    }
+
 }]);

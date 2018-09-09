@@ -1,10 +1,10 @@
 angular.module('ficha').factory('fichaService', ['dao',function(dao) {
     
-    var adicionaFicha = function (ficha) {
+    var add = function (ficha) {
         return dao.add('ficha', ficha);
     };
 
-    var removeFicha = function (ficha) {
+    var remove = function (ficha) {
         return dao.remove('ficha', ficha);
     };
 
@@ -14,7 +14,7 @@ angular.module('ficha').factory('fichaService', ['dao',function(dao) {
 
     return {
         getAll : all,
-        add : adicionaFicha,
-        remove : removeFicha,
+        add : add,
+        remove : remove
     }
 }]);

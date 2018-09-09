@@ -1,20 +1,14 @@
 angular.module('ficha').factory('animalService', ['dao',function(dao) {
     
-    var add = function (ficha) {
-        return dao.add('ficha', ficha);
+    var getAll = function () {
+        return [
+            {id: '1111',name: 'piriquita'},
+            {id: '2222',name: 'marcola'},
+            {id: '3333',name: 'popeye'},
+        ];
     };
 
-    var remove = function (ficha) {
-        return dao.remove('ficha', ficha);
-    };
-
-    var all = function () {
-        return dao.getAll('ficha');
-    };
-    
     return {
-        getAll : all,
-        add : add,
-        remove : remove,
+        getAll : getAll,
     }
 }]);
