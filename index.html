@@ -12,101 +12,92 @@
     <script src="js/animalService.js"></script>
 </head>
 
-<body>
-    <div class="container" ng-controller="fichaCrtl">
+<body ng-controller="fichaCrtl" class="container">
+    <div ng-if="mostrarBuscaDeFichas">
         <div class="page-header">
-            <h1 class="title">{{title}}</h1>
+            <h1 class="title">Lista de Fichas</h1>
         </div>
-    </div>
-    <div class="container">
-        <form>
-            <div class="form-group">
-                <label>Pesquisar por id</label>
-                <input type="text" class="form-control" placeholder="Id">
-            </div>
-            <div class="form-group">
-                <label>Periodo de inicio</label>
-                <input type="date" class="form-control">
-            </div>
-            <div class="form-group">
-                <label>Periodo de fim</label>
-                <input type="date" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
-    </div>
-    <div class="container" ng-controller="fichaCrtl">
-        <button ui-sref="" ng-click="showCadastro(true)" type="submit" class="btn btn-primary">
-            Adicionar ficha
-        </button>
-        <div class="container" ng-show="isVisible">
+        <div>
             <form>
                 <div class="form-group">
-                    <label>identificador</label>
-                    <input ng-model="ficha.identificador" type="text" class="form-control" placeholder="Id">
+                    <label>Pesquisar por id</label>
+                    <input type="text" class="form-control" placeholder="Id">
                 </div>
                 <div class="form-group">
-                    <label>data</label>
-                    <input  ng-model="ficha.dataDeCadastro" type="date" class="form-control">
+                    <label>Período de inicio</label>
+                    <input type="date" class="form-control">
                 </div>
                 <div class="form-group">
+                    <label>Período de fim</label>
+                    <input type="date" class="form-control">
+                </div>
+                <button type="submit" ng-click="buscar()" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+        <button ng-click="showCadastro()" type="submit" class="btn btn-primary">
+            Adicionar ficha
+        </button>
+    </div>
+
+    <div ng-if="mostrarCadastraFicha">
+        <div class="page-header">
+            <h1 class="title">Cadastrar Ficha</h1>
+        </div>
+        <form>
+            <div class="form-group">
+                <label>Data de Cadastro</label>
+                <input ng-model="ficha.dataDeCadastro" type="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="form-check">
                     <label class="form-check-label">
-                        <input ng-model="ficha.status" type="checkbox" class="form-check-input" name="optradio">Ativar
+                        <input ng-model="ficha.status" 
+                        value="Ativo" type="radio" class="form-check-input" name="status">Ativo
                     </label>
                 </div>
-                <div class="input-group">
-                    <label>Observacao </label>
-                    <textarea ng-model="ficha.Observacao" class="form-control" aria-label="With textarea"></textarea>
+                <div class="form-check">
+                    <label class="form-check-label">
+                        <input ng-model="ficha.status" value="Inativo" type="radio" class="form-check-input" name="status">Inativo
+                    </label>
                 </div>
-                <div class="container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nome</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="animal in animais">
-                                <td>
-                                    <input 
-                                     type="checkbox" aria-label="Checkbox">
-                                </td>
-                                <td>
-                                    <span ng-bind="animal.id"></span>
-                                </td>
-                                <td>
-                                    <span ng-bind="animal.name"></span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <button ng-click="cadastrarFicha(ficha)" type="submit" class="btn btn-primary">cadastrar</button>
-                <button type="button" ng-click="showCadastro(false)" class="btn btn-danger btn-sm">Cancelar</button>
-
-            </form>
+            </div>
+            <div class="form-group">
+                <label>Observação</label>
+                <textarea ng-model="ficha.observacao" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Selecione os animais</label>
+                <!-- <select class="form-control" multiple="true" ng-model="ficha.animais"
+                        ng-options="animal in animais">
+                    </select> -->
+            </div>
+            <button ng-click="cadastrarFicha(ficha)" type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="button" ng-click="cancelarCadastro()" class="btn btn-danger">Cancelar</button>
+        </form>
+    </div>
+    <div ng-if="mostrarFichasCadastradas">
+        <div class="page-header">
+            <h1 class="title">Fichas Cadastradas</h1>
         </div>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Data de cadastro</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Acoes</th>
+                    <th>Id</th>
+                    <th>Data de cadastro</th>
+                    <th>Status</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="ficha in fichas">
                     <td>
-                        <span ng-bind="ficha.identificador"></span>
+                        <span ng-bind="ficha.id"></span>
                     </td>
                     <td>
                         <span ng-bind="ficha.dataDeCadastro | date: 'dd/MM/yyyy'"></span>
                     </td>
                     <td>
-                        <span ng-bind="ficha.status"> </span>
+                        <span ng-bind="ficha.status"></span>
                     </td>
                     <td>
                         <button type="button" ng-click="excluir(ficha)" class="btn btn-danger btn-sm">Excluir</button>
@@ -117,5 +108,4 @@
         </table>
     </div>
 </body>
-
 </html>

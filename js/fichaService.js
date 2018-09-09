@@ -5,7 +5,7 @@ angular.module('ficha').factory('fichaService', ['dao',function(dao) {
     };
 
     var remove = function (ficha) {
-        return dao.remove('ficha', ficha);
+        return dao.remove('ficha', ficha.id);
     };
 
     var all = function () {
