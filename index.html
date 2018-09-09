@@ -38,7 +38,6 @@
             Adicionar ficha
         </button>
     </div>
-
     <div ng-if="mostrarCadastraFicha">
         <div class="page-header">
             <h1 class="title">Cadastrar Ficha</h1>
@@ -51,8 +50,7 @@
             <div class="form-group">
                 <div class="form-check">
                     <label class="form-check-label">
-                        <input ng-model="ficha.status" 
-                        value="Ativo" type="radio" class="form-check-input" name="status">Ativo
+                        <input ng-model="ficha.status" value="Ativo" type="radio" class="form-check-input" name="status">Ativo
                     </label>
                 </div>
                 <div class="form-check">
@@ -67,11 +65,11 @@
             </div>
             <div class="form-group">
                 <label>Selecione os animais</label>
-                <!-- <select class="form-control" multiple="true" ng-model="ficha.animais"
-                        ng-options="animal in animais">
-                    </select> -->
+                <select class="form-control" ng-model="ficha.animais" multiple
+                    ng-options="animal.nome for animal in animais track by animal.id">
+                </select>
             </div>
-            <button ng-click="cadastrarFicha(ficha)" type="submit" class="btn btn-primary">Cadastrar</button>
+            <button ng-click="salvar(ficha)" type="submit" class="btn btn-primary">Salvar</button>
             <button type="button" ng-click="cancelarCadastro()" class="btn btn-danger">Cancelar</button>
         </form>
     </div>
@@ -101,11 +99,12 @@
                     </td>
                     <td>
                         <button type="button" ng-click="excluir(ficha)" class="btn btn-danger btn-sm">Excluir</button>
-                        <button type="button" class="btn btn-secondary btn-sm">Editar</button>
+                        <button type="button" ng-click="editar(ficha)" class="btn btn-secondary btn-sm">Editar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </body>
+
 </html>

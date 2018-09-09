@@ -54,7 +54,6 @@ angular.module('ficha').factory('dao', ['$window', function($window) {
         return readBanco()[key];
     };
 
-
     return {
         add : add,
         getAll: getAll,
