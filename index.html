@@ -5,17 +5,17 @@
     <link href="template/estilo.css" rel="stylesheet" />
     <title>Ficha Animal</title>
     <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>
     <script src="js/app.js"></script>
     <script src="js/fichaCrtl.js"></script>
+    <script src="js/cadastroCrtl.js"></script>
     <script src="js/fichaService.js"></script>
     <script src="js/dao.js"></script>
     <script src="js/animalService.js"></script>
 </head>
 
-<body ng-controller="fichaCrtl" class="container">
-    <div ng-include="'templates/busca.html'"></div>
-    <div ng-include="'templates/cadastro.html'"></div>
-    <div ng-include="'templates/fichas.html'"></div>
+<body class="container">
+    <div ng-view></div>
 </body>
 
 </html>

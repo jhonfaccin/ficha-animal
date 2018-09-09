@@ -1,32 +1,32 @@
-<div ng-if="mostrarFichasCadastradas">
-        <div class="page-header">
-            <h1 class="title">Fichas Cadastradas</h1>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Data de cadastro</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="ficha in fichas">
-                    <td>
-                        <span ng-bind="ficha.id"></span>
-                    </td>
-                    <td>
-                        <span ng-bind="ficha.dataDeCadastro | date: 'dd/MM/yyyy'"></span>
-                    </td>
-                    <td>
-                        <span ng-bind="ficha.status"></span>
-                    </td>
-                    <td>
-                        <button type="button" ng-click="excluir(ficha)" class="btn btn-danger btn-sm">Excluir</button>
-                        <button type="button" ng-click="editar(ficha)" class="btn btn-secondary btn-sm">Editar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div>
+    <div class="page-header">
+        <h1 class="title">Fichas Cadastradas</h1>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data de cadastro</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="ficha in fichas">
+                <td>
+                    <span ng-bind="ficha.id"></span>
+                </td>
+                <td>
+                    <span ng-bind="ficha.dataDeCadastro | date: 'dd/MM/yyyy'"></span>
+                </td>
+                <td>
+                    <span ng-bind="ficha.status"></span>
+                </td>
+                <td>
+                    <button type="button" ng-click="excluir(ficha)" class="btn btn-danger btn-sm">Excluir</button>
+                    <button type="button" ng-click="editar(ficha)" class="btn btn-secondary btn-sm">Editar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

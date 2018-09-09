@@ -3,7 +3,7 @@ angular.module('ficha').factory('fichaService', ['dao',function(dao) {
     var add = function (ficha) {
         return dao.add('ficha', ficha);
     };
-    
+
     var update = function (ficha) {
         return dao.update('ficha', ficha);
     };
@@ -16,7 +16,12 @@ angular.module('ficha').factory('fichaService', ['dao',function(dao) {
         return dao.getAll('ficha');
     };
 
+    var get = function (id) {
+        return dao.get('ficha', id);
+    };
+
     return {
+        get: get,
         getAll : all,
         add : add,
         remove : remove,
