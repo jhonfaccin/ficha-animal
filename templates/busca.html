@@ -1,0 +1,25 @@
+<div ng-if="mostrarBuscaDeFichas">
+        <div class="page-header">
+            <h1 class="title">Lista de Fichas</h1>
+        </div>
+        <div>
+            <form>
+                <div class="form-group">
+                    <label>Pesquisar por id</label>
+                    <input type="text" class="form-control" placeholder="Id">
+                </div>
+                <div class="form-group">
+                    <label>Período de inicio</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Período de fim</label>
+                    <input type="date" class="form-control">
+                </div>
+                <button type="submit" ng-click="buscar()" class="btn btn-primary">Buscar</button>
+            </form>
+        </div>
+        <button ng-click="showCadastro()" type="submit" class="btn btn-primary">
+            Adicionar ficha
+        </button>
+    </div>
