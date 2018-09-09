@@ -5,7 +5,7 @@ function($scope,fichaService,animalService) {
     $scope.fichas = fichaService.getAll();
 
     $scope.excluir = function (ficha){
-        fichaService.remove(ficha.identificador);
+        fichaService.remove(ficha);
         //$scope.fichas = fichaService.getAll()
         console.log(ficha);
     }
