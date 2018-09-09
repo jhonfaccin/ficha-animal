@@ -1,4 +1,4 @@
-<html ng-app="ficha-animal">
+<html ng-app="ficha">
 
 <head>
     <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
@@ -6,6 +6,10 @@
     <title>Ficha Animal</title>
     <script src="node_modules/angular/angular.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/fichaCrtl.js"></script>
+    <script src="js/fichaService.js"></script>
+    <script src="js/dao.js"></script>
+    <script src="js/animalService.js"></script>
 </head>
 
 <body>
@@ -32,6 +36,54 @@
         </form>
     </div>
     <div class="container" ng-controller="fichaCrtl">
+        <button ui-sref="" ng-click="showCadastro(true)" type="submit" class="btn btn-primary">
+            Adicionar ficha
+        </button>
+        <div class="container" ng-show="isVisible">
+            <form>
+                <div class="form-group">
+                    <label>identificador</label>
+                    <input type="text" class="form-control" placeholder="Id">
+                </div>
+                <div class="form-group">
+                    <label>data</label>
+                    <input type="date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="optradio">Ativar
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label>Observacao </label>
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+                <div class="container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nome</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="animal in animais">
+                                <td>
+                                    <span ng-bind="animal.id"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="animal.name"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" ng-show="isVisible" class="btn btn-primary">cadastrar</button>
+                <button type="button" ng-click="showCadastro(false)" class="btn btn-danger btn-sm">Cancelar</button>
+
+            </form>
+        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -53,7 +105,7 @@
                         <span ng-bind="ficha.status"> </span>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-danger btn-sm">Excluir</button>
+                        <button type="button" ng-click="excluir(ficha)" class="btn btn-danger btn-sm">Excluir</button>
                         <button type="button" class="btn btn-secondary btn-sm">Editar</button>
                     </td>
                 </tr>
