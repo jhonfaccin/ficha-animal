@@ -2,8 +2,9 @@
     <div class="page-header">
         <h1 class="title">Fichas Cadastradas</h1>
     </div>
-    <table class="table">
-        <thead>
+    <h5 ng-if="!fichas.length" style="text-align: center">Não foi encontrada nenhuma ficha!</h5>
+    <table ng-if="fichas" class="table">
+        <thead ng-if="false">
             <tr>
                 <th>Id</th>
                 <th>Data de cadastro</th>

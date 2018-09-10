@@ -1,5 +1,5 @@
-angular.module('ficha').factory('fichaService', ['dao',function(dao) {
-    
+angular.module('ficha').factory('fichaService', ['dao', function (dao) {
+
     var adicionar = function (ficha) {
         return dao.adicionar('ficha', ficha);
     };
@@ -21,13 +21,29 @@ angular.module('ficha').factory('fichaService', ['dao',function(dao) {
     };
 
     var pesquisar = function (pesquisa) {
+
+        if (!pesquisa) {
+            return;
+        }
+
+        if (pesquisa.id) {
+            var fichas = [buscar(pesquisa.id)];
+            return fichas;
+        }
+        var todasAsFichas = buscarTodos();
+
+        var fichas = todasAsFichas.filter(ficha =>
+            new Date(ficha.dataDeCadastro).getTime() > pesquisa.dataInicio.getTime() &&
+            new Date(ficha.dataDeCadastro).getTime() < pesquisa.dataFim.getTime());
+        return fichas;
     };
 
     return {
+        pesquisar: pesquisar,
         buscar: buscar,
-        buscarTodos : buscarTodos,
-        adicionar : adicionar,
-        remover : remover,
+        buscarTodos: buscarTodos,
+        adicionar: adicionar,
+        remover: remover,
         atualizar: atualizar
     }
 }]);

@@ -4,23 +4,7 @@ angular.module("ficha").controller('fichaCrtl',
 
 
             $scope.buscar = function (pesquisa) {
-
                 $scope.fichas = fichaService.pesquisar(pesquisa);
-                if (pesquisa.id) {
-                    $scope.fichas = [fichaService.buscar(pesquisa.id)];
-                    $scope.mostrarFichasCadastradas = true;
-                    return;
-                }
-                var todasAsFichas = fichaService.buscarTodos();
-
-                var i;
-                for (i = 0; i < todasAsFichas.length; i++) {
-                    todasAsFichas[i].dataDeCadastro = new Date(todasAsFichas[i].dataDeCadastro)
-
-                }
-                $scope.fichas = todasAsFichas.filter(ficha =>
-                    ficha.dataDeCadastro > pesquisa.dataInicio &&
-                    ficha.dataDeCadastro < pesquisa.dataFim);
                 $scope.mostrarFichasCadastradas = true;
             }
 
