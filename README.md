@@ -1,6 +1,6 @@
 # ficha-animal
 
-para rodar a aplicacao basta usar os comandos:
+para rodar a aplicação basta usar os comandos:
 
 ```shell
 npm install
