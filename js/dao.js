@@ -1,7 +1,7 @@
 angular.module('ficha').factory('dao', ['$window', function($window) {
 
 
-    var readBanco = function () {
+    var leBanco = function () {
         if (!$window.localStorage['banco']){
             return $window.localStorage.banco = JSON.stringify({});
         }else{
@@ -9,56 +9,56 @@ angular.module('ficha').factory('dao', ['$window', function($window) {
         }
     };
 
-    var writeBanco = function (key, values) {
-        var banco = readBanco();
-        banco[key] = values;
+    var escreveBanco = function (chave, valores) {
+        var banco = leBanco();
+        banco[chave] = valores;
         $window.localStorage.banco = JSON.stringify(banco);
     };
 
-    var add = function (key, value) {
-        var values = all(key);
-        value.id = Math.floor(Math.random() * 1000000000000) + '-' + new Date().getTime();
-        values[value.id] = value;
-        writeBanco(key, values);
-        return value;
+    var adicionar = function (chave, valor) {
+        var valores = todos(chave);
+        valor.id = Math.floor(Math.random() * 1000000000000) + '-' + new Date().getTime();
+        valores[valor.id] = valor;
+        escreveBanco(chave, valores);
+        return valor;
     };
 
-    var get = function (key, id) {
-        return all(key)[id];
+    var buscar = function (chave, id) {
+        return todos(chave)[id];
     };
 
-    var all = function (key) {
-        var values = readBanco();
-        return values[key] ? values[key] : createProperty(key);
+    var todos = function (chave) {
+        var valores = leBanco();
+        return valores[chave] ? valores[chave] : criaPropriedade(chave);
     };
 
-    var getAll = function (key) {
-        return Object.values(all(key));
+    var buscarTodos = function (chave) {
+        return Object.values(todos(chave));
     };
 
-    var remove = function (key, id) {
-        var values = all(key);
-        delete values[id];
-        writeBanco(key, values);
+    var remover = function (chave, id) {
+        var valores = todos(chave);
+        delete valores[id];
+        escreveBanco(chave, valores);
     };
 
-    var update = function (key, value) {
-        var values = all(key);
-        values[value.id] = value;
-        writeBanco(key, values);
-        return value;
+    var atualizar = function (chave, valor) {
+        var valores = todos(chave);
+        valores[valor.id] = valor;
+        escreveBanco(chave, valores);
+        return valor;
     };
 
-    var createProperty = function (key) {
-        writeBanco(key, {});
-        return readBanco()[key];
+    var criaPropriedade = function (chave) {
+        escreveBanco(chave, {});
+        return leBanco()[chave];
     };
 
     return {
-        add : add,
-        getAll: getAll,
-        get : get,
-        update : update,
-        remove : remove,
+        adicionar : adicionar,
+        buscarTodos: buscarTodos,
+        buscar : buscar,
+        atualizar : atualizar,
+        remover : remover,
     }
 }]);

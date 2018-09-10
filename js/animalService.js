@@ -1,6 +1,6 @@
 angular.module('ficha').factory('animalService', ['dao',function(dao) {
     
-    var getAll = function () {
+    var buscarTodos = function () {
         return [
             {id: '1111', nome: 'cachorro'},
             {id: '2222', nome: 'gato'},
@@ -9,6 +9,6 @@ angular.module('ficha').factory('animalService', ['dao',function(dao) {
     };
 
     return {
-        getAll : getAll,
+        buscarTodos : buscarTodos,
     }
 }]);

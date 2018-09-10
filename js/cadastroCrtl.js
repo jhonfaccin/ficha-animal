@@ -3,9 +3,9 @@ angular.module("ficha").controller('cadastroCtrl',
     function ($scope, $location, $routeParams,  fichaService, animalService) {
 
         var init = function () {
-            $scope.animais = animalService.getAll();
+            $scope.animais = animalService.buscarTodos();
             if ($routeParams.idFicha) {
-                $scope.ficha = fichaService.get($routeParams.idFicha);
+                $scope.ficha = fichaService.buscar($routeParams.idFicha);
                 $scope.ficha.dataDeCadastro = new Date($scope.ficha.dataDeCadastro);
             } else {
                 $scope.ficha = { status: 'Ativo', dataDeCadastro: new Date()};
@@ -19,9 +19,9 @@ angular.module("ficha").controller('cadastroCtrl',
 
         $scope.salvar = function (ficha) {
             if (ficha.id) {
-                fichaService.update(angular.copy(ficha));
+                fichaService.atualizar(angular.copy(ficha));
             } else {
-                fichaService.add(ficha);
+                fichaService.adicionar(ficha);
             }
             $location.path('/');
         }

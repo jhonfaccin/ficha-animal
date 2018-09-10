@@ -1,30 +1,33 @@
 angular.module('ficha').factory('fichaService', ['dao',function(dao) {
     
-    var add = function (ficha) {
-        return dao.add('ficha', ficha);
+    var adicionar = function (ficha) {
+        return dao.adicionar('ficha', ficha);
     };
 
-    var update = function (ficha) {
-        return dao.update('ficha', ficha);
+    var atualizar = function (ficha) {
+        return dao.atualizar('ficha', ficha);
     };
 
-    var remove = function (ficha) {
-        return dao.remove('ficha', ficha.id);
+    var remover = function (ficha) {
+        return dao.remover('ficha', ficha.id);
     };
 
-    var all = function () {
-        return dao.getAll('ficha');
+    var buscarTodos = function () {
+        return dao.buscarTodos('ficha');
     };
 
-    var get = function (id) {
-        return dao.get('ficha', id);
+    var buscar = function (id) {
+        return dao.buscar('ficha', id);
+    };
+
+    var pesquisar = function (pesquisa) {
     };
 
     return {
-        get: get,
-        getAll : all,
-        add : add,
-        remove : remove,
-        update: update
+        buscar: buscar,
+        buscarTodos : buscarTodos,
+        adicionar : adicionar,
+        remover : remover,
+        atualizar: atualizar
     }
 }]);

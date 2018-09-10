@@ -6,17 +6,17 @@
         <form>
             <div class="form-group">
                 <label>Pesquisar por id</label>
-                <input type="text" class="form-control" placeholder="Id">
+                <input ng-model="pesquisa.id" type="text" class="form-control" placeholder="Id">
             </div>
             <div class="form-group">
                 <label>Período de inicio</label>
-                <input type="date" class="form-control">
+                <input ng-model="pesquisa.dataInicio" type="date" class="form-control">
             </div>
             <div class="form-group">
                 <label>Período de fim</label>
-                <input type="date" class="form-control">
+                <input ng-model="pesquisa.dataFim" type="date" class="form-control">
             </div>
-            <button type="submit" ng-click="buscar()" class="btn btn-primary">Buscar</button>
+            <button type="submit" ng-click="buscar(pesquisa)" class="btn btn-primary">Buscar</button>
         </form>
     </div>
     <a class="btn btn-primary" href="#!cadastro/">
