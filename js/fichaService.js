@@ -4,45 +4,18 @@ angular.module('ficha').factory('fichaService', ['$http', function ($http) {
         return $http.post("http://localhost:8080/ficha-animal-server/api/ficha",ficha);
     };
 
-    var atualizar = function (ficha) {
-        return dao.atualizar('ficha', ficha);
-    };
-
-    var remover = function (ficha) {
-        return dao.remover('ficha', ficha.id);
-    };
-
-    var buscarTodos = function () {
-        return dao.buscarTodos('ficha');
-    };
-
-    var buscar = function (id) {
-        return $http.get("http://localhost:8080/ficha-animal-server/api/ficha");
-    };
-
     var pesquisar = function (pesquisa) {
+        return $http.get("http://localhost:8080/ficha-animal-server/api/pesquisa",
+        {params: {id:pesquisa.id,dataDeCadastro:pesquisa.dataInicio,dataFim:pesquisa.dataFim}});
+    };
 
-        if (!pesquisa) {
-            return;
-        }
-
-        if (pesquisa.id) {
-            return buscar(pesquisa.id);
-        }
-        var todasAsFichas = buscarTodos();
-
-        var fichas = todasAsFichas.filter(ficha =>
-            new Date(ficha.dataDeCadastro).getTime() > pesquisa.dataInicio.getTime() &&
-            new Date(ficha.dataDeCadastro).getTime() < pesquisa.dataFim.getTime());
-        return fichas;
+    var remover = function(ficha){
+        return $http.delete("http://localhost:8080/ficha-animal-server/api/ficha/"+ficha.id);
     };
 
     return {
-        buscar: buscar,
         pesquisar: pesquisar,
-        buscarTodos: buscarTodos,
         adicionar: adicionar,
-        remover: remover,
-        atualizar: atualizar
+        remover: remover
     }
 }]);

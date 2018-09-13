@@ -2,6 +2,7 @@ angular.module("ficha").controller('fichaCrtl',
     ['$scope', '$location', 'fichaService', 'animalService',
         function ($scope, $location, fichaService, animalService) {
 
+            $scope.pesquisa = {};
 
             $scope.buscar = function (pesquisa) {
                 fichaService.pesquisar(pesquisa).then(function(response){
@@ -12,8 +13,9 @@ angular.module("ficha").controller('fichaCrtl',
 
             $scope.excluir = function (ficha) {
                 if (confirm('Tem certeza?')) {
-                    fichaService.remover(ficha);
-                    $scope.fichas = fichaService.buscarTodos();
+                    fichaService.remover(ficha).then(function(response){
+                        $scope.fichas = $scope.fichas.filter(f => f.id != ficha.id)
+                    });
                 }
             }
 
