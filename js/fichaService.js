@@ -1,7 +1,7 @@
-angular.module('ficha').factory('fichaService', ['dao', function (dao) {
+angular.module('ficha').factory('fichaService', ['$http', function ($http) {
 
     var adicionar = function (ficha) {
-        return dao.adicionar('ficha', ficha);
+        return $http.post("http://localhost:8080/ficha-animal-server/api/ficha",ficha);
     };
 
     var atualizar = function (ficha) {
@@ -17,7 +17,7 @@ angular.module('ficha').factory('fichaService', ['dao', function (dao) {
     };
 
     var buscar = function (id) {
-        return dao.buscar('ficha', id);
+        return $http.get("http://localhost:8080/ficha-animal-server/api/ficha");
     };
 
     var pesquisar = function (pesquisa) {
@@ -27,8 +27,7 @@ angular.module('ficha').factory('fichaService', ['dao', function (dao) {
         }
 
         if (pesquisa.id) {
-            var fichas = [buscar(pesquisa.id)];
-            return fichas;
+            return buscar(pesquisa.id);
         }
         var todasAsFichas = buscarTodos();
 
@@ -39,8 +38,8 @@ angular.module('ficha').factory('fichaService', ['dao', function (dao) {
     };
 
     return {
-        pesquisar: pesquisar,
         buscar: buscar,
+        pesquisar: pesquisar,
         buscarTodos: buscarTodos,
         adicionar: adicionar,
         remover: remover,

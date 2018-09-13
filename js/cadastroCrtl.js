@@ -3,12 +3,14 @@ angular.module("ficha").controller('cadastroCtrl',
     function ($scope, $location, $routeParams,  fichaService, animalService) {
 
         var init = function () {
-            $scope.animais = animalService.buscarTodos();
+            animalService.buscarTodos().then(function(response){
+                $scope.animais = response.data;
+            });
             if ($routeParams.idFicha) {
                 $scope.ficha = fichaService.buscar($routeParams.idFicha);
                 $scope.ficha.dataDeCadastro = new Date($scope.ficha.dataDeCadastro);
             } else {
-                $scope.ficha = { status: 'Ativo', dataDeCadastro: new Date()};
+                $scope.ficha = { ativo: true, dataDeCadastro: new Date()};
             }
         }
 

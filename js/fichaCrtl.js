@@ -4,7 +4,9 @@ angular.module("ficha").controller('fichaCrtl',
 
 
             $scope.buscar = function (pesquisa) {
-                $scope.fichas = fichaService.pesquisar(pesquisa);
+                fichaService.pesquisar(pesquisa).then(function(response){
+                    $scope.fichas = response.data;
+                });
                 $scope.mostrarFichasCadastradas = true;
             }
 

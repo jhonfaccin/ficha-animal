@@ -21,7 +21,8 @@
                     <span ng-bind="ficha.dataDeCadastro | date: 'dd/MM/yyyy'"></span>
                 </td>
                 <td>
-                    <span ng-bind="ficha.status"></span>
+                    <span ng-if="ficha.ativo">Ativo</span>
+                    <span ng-if="!ficha.ativo">Inativo</span>
                 </td>
                 <td>
                     <button type="button" ng-click="excluir(ficha)" class="btn btn-danger btn-sm">Excluir</button>
