@@ -6,7 +6,7 @@ angular.module("ficha").controller('fichaCrtl',
 
             $scope.buscar = function (pesquisa) {
                 fichaService.pesquisar(pesquisa).then(function(response){
-                    $scope.fichas = response.data;
+                    $scope.fichas = response.data || [];
                 });
                 $scope.mostrarFichasCadastradas = true;
             }

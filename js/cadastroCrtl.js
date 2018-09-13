@@ -7,8 +7,10 @@ angular.module("ficha").controller('cadastroCtrl',
                 $scope.animais = response.data;
             });
             if ($routeParams.idFicha) {
-                $scope.ficha = fichaService.buscar($routeParams.idFicha);
-                $scope.ficha.dataDeCadastro = new Date($scope.ficha.dataDeCadastro);
+                fichaService.buscar($routeParams.idFicha).then(response => {
+                    $scope.ficha = response.data;
+                    $scope.ficha.dataDeCadastro = new Date($scope.ficha.dataDeCadastro);
+                });
             } else {
                 $scope.ficha = { ativo: true, dataDeCadastro: new Date()};
             }
@@ -20,12 +22,16 @@ angular.module("ficha").controller('cadastroCtrl',
         }
 
         $scope.salvar = function (ficha) {
+            debugger
             if (ficha.id) {
-                fichaService.atualizar(angular.copy(ficha));
+                fichaService.atualizar(ficha.id, angular.copy(ficha)).then(response => {
+                    $location.path('/');
+                });
             } else {
-                fichaService.adicionar(ficha);
+                fichaService.adicionar(ficha).then(response => {
+                    $location.path('/');
+                });
             }
-            $location.path('/');
         }
         init();
 }]);
