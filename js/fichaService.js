@@ -4,7 +4,7 @@ angular.module('ficha').factory('fichaService', ['$http', function ($http) {
         return $http.post("http://localhost:8080/ficha-animal-server/api/ficha",ficha);
     };
     var atualizar = function (idFicha, ficha) {
-        return $http.post("http://localhost:8080/ficha-animal-server/api/ficha/"+idFicha,ficha);
+        return $http.put("http://localhost:8080/ficha-animal-server/api/ficha/"+idFicha,ficha);
     };
 
     var pesquisar = function (pesquisa) {

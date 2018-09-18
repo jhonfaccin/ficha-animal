@@ -3,8 +3,8 @@
         <h1 class="title">Fichas Cadastradas</h1>
     </div>
     <h5 ng-if="!fichas.length" style="text-align: center">Não foi encontrada nenhuma ficha!</h5>
-    <table ng-if="fichas" class="table">
-        <thead ng-if="false">
+    <table class="table">
+        <thead ng-if="fichas.length > 0">
             <tr>
                 <th>Id</th>
                 <th>Data de cadastro</th>
@@ -12,7 +12,7 @@
                 <th>Ações</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody ng-if="fichas"> 
             <tr ng-repeat="ficha in fichas">
                 <td>
                     <span ng-bind="ficha.id"></span>

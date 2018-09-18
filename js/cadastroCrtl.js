@@ -22,7 +22,6 @@ angular.module("ficha").controller('cadastroCtrl',
         }
 
         $scope.salvar = function (ficha) {
-            debugger
             if (ficha.id) {
                 fichaService.atualizar(ficha.id, angular.copy(ficha)).then(response => {
                     $location.path('/');
